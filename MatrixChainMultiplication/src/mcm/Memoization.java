@@ -4,7 +4,7 @@ import static mcm.Input.NUMBER_OF_MATRICES;
 
 public class Memoization {
     // Creation of a 2D Array that acts as a table in order to store the intermediate results.
-    // The first row and column (index 0) are not used and are simply added due to the effect of zero-based numbering
+    // The first row and column (index 0) are not used and are simply added due to the effect of zero-based numbering.
     public static int[][] table = new int[NUMBER_OF_MATRICES +1][NUMBER_OF_MATRICES +1];
 
     // Fill all elements in the table with -1 (since the default value for int arrays is 0, which is a possible value
