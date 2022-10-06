@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="47393dde-9630-4069-94d5-8a3173928884" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/Input.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/Recursion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mcm/Input.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mcm/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mcm/Memoization.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mcm/Recursion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/.idea/discord.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/MatrixChainMultiplication.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/.idea/discord.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/com/mcm/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/com/mcm/Recursion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/out/production/MatrixChainMultiplication/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/out/production/MatrixChainMultiplication/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/out/production/MatrixChainMultiplication/.idea/discord.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/out/production/MatrixChainMultiplication/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/out/production/MatrixChainMultiplication/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/out/production/MatrixChainMultiplication/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/out/production/MatrixChainMultiplication/MatrixChainMultiplication.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/out/production/MatrixChainMultiplication/com/mcm/Input.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/out/production/MatrixChainMultiplication/com/mcm/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/out/production/MatrixChainMultiplication/com/mcm/Recursion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/.idea/description.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/project-template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/.idea/project-template.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatrixChainMultiplication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MatrixChainMultiplication.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/com/mcm/Input.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/out/production/MatrixChainMultiplication/com/mcm/Input.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/com/mcm/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/out/production/MatrixChainMultiplication/com/mcm/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mcm/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MatrixChainMultiplication_2/src/com/mcm/Input.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mcm/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mcm/Recursion.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Fk9twWJaXokaAY6cT7pncDRZre" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="mcm.Main" />
+      <module name="MatrixChainMultiplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mcm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="47393dde-9630-4069-94d5-8a3173928884" name="Changes" comment="" />
+      <created>1665025436527</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1665025436527</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
