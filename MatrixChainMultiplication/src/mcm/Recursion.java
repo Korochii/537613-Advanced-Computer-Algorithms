@@ -1,5 +1,8 @@
 package mcm;
 
+/**
+ * @author Terng Yan Long (唐延龍）
+ */
 public class Recursion {
     public static int recurse(int i, int j, int[] arr) {
         // i = index of first matrix

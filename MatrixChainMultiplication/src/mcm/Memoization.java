@@ -2,17 +2,20 @@ package mcm;
 
 import static mcm.Input.NUMBER_OF_MATRICES;
 
+/**
+ * @author Terng Yan Long (唐延龍）
+ */
 public class Memoization {
     // Creation of a 2D Array that acts as a table in order to store the intermediate results.
     // The first row and column (index 0) are not used and are simply added due to the effect of zero-based numbering.
-    public static int[][] table = new int[NUMBER_OF_MATRICES +1][NUMBER_OF_MATRICES +1];
+    public static int[][] memoizedTable = new int[NUMBER_OF_MATRICES +1][NUMBER_OF_MATRICES +1];
 
     // Fill all elements in the table with -1 (since the default value for int arrays is 0, which is a possible value
     // and thus will affect the intermediate calculations)
-    public static void initTable() {
+    public static void initMemoizedTable() {
         for (int i = 1; i <= NUMBER_OF_MATRICES; i++) {
             for (int j = 1; j <= NUMBER_OF_MATRICES; j++) {
-                table[i][j] = -1;
+                memoizedTable[i][j] = -1;
             }
         }
     }
@@ -26,20 +29,20 @@ public class Memoization {
         }
 
         // Check if stored value exists in the table
-        if (table[i][j] != -1) {
-            return table[i][j];
+        if (memoizedTable[i][j] != -1) {
+            return memoizedTable[i][j];
         }
 
-        table[i][j] = Integer.MAX_VALUE;
+        memoizedTable[i][j] = Integer.MAX_VALUE;
         for (int k = i; k < j; k++) {
             int recurseOperations = memoize(i, k, arr) + memoize(k+1, j, arr);
             int currOperations = arr[i-1] * arr[k] * arr[j];
             int totalOperations = currOperations + recurseOperations;
 
-            if (totalOperations < table[i][j]) {
-                table[i][j] = totalOperations;
+            if (totalOperations < memoizedTable[i][j]) {
+                memoizedTable[i][j] = totalOperations;
             }
         }
-        return table[i][j];
+        return memoizedTable[i][j];
     }
 }
