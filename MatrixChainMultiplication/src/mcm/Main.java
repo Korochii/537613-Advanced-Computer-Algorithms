@@ -5,7 +5,6 @@ import static mcm.Input.NUMBER_OF_MATRICES;
 import static mcm.Memoization.initMemoizedTable;
 import static mcm.Memoization.memoize;
 import static mcm.NestedForLoop.iterate;
-import static mcm.Recursion.recurse;
 
 /**
  * @author Terng Yan Long (唐延龍）
@@ -20,6 +19,8 @@ public class Main {
         long elapsedTime;
         int result;
 
+        /*
+        // Commented out due to Time Limit Exceed (TLE)
         // A. Pure recursion
         startTime = System.nanoTime();
         result = recurse(start, end, INPUT);
@@ -29,6 +30,7 @@ public class Main {
         System.out.println("------------------------------------------------------------");
         System.out.println("Total Number of Multiplications: " + result);
         System.out.println("Elapsed Run Time (in nanoseconds): " + elapsedTime + "\n");
+        */
 
         // B. Recursion with memoization
         startTime = System.nanoTime();

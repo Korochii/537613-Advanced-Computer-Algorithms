@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47393dde-9630-4069-94d5-8a3173928884" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/NestedForLoop.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mcm/NestedForLoop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/Input.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/Input.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/Memoization.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/Memoization.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mcm/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mcm/Input.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/NestedForLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/NestedForLoop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/Recursion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MatrixChainMultiplication/mcm/Recursion.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mcm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mcm/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mcm/Memoization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mcm/Memoization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mcm/Recursion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mcm/Recursion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
