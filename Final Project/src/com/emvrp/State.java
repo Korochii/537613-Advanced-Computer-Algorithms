@@ -38,6 +38,8 @@ public class State {
 //        for(int i = 0; i < customersVisited.length();  i++) {
 //            s.insert(0, customersVisited.get(i) ? 1: 0);
 //        }
+        // customersVisited denotes which bit is true
+        // E.g. customersVisited={2} -> 2nd bit === 1 -> 3rd customer has been visited (zero indexing)
         return "State{" +
                 "customersVisited=" + customersVisited +
                 ", currentNode=" + currentNode +
