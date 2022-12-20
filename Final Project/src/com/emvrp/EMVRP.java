@@ -2,9 +2,7 @@ package com.emvrp;
 
 import java.util.BitSet;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Classic EMVRP without enhancements.
@@ -32,7 +30,7 @@ public class EMVRP {
         this.weightVector = new HashMap<>();
     }
 
-    public void getBestRoute() {
+    public int getBestRoute() {
         // Handles the first customer
         for (Edge next_customer : startingNode.getNeighbours()) {
             Node dest = next_customer.getDest();
@@ -40,7 +38,7 @@ public class EMVRP {
             tempState.addCustomerVisited(dest);
             tempState.setCurrentNode(dest);
             this.dp.put(tempState, energyRequired(payloadWeight, dest.getDistFromDepot()));
-            this.weightVector.put(tempState.getCustomersVisited(), payloadWeight + droneWeight - dest.getWeight());
+            this.weightVector.put(tempState.getCustomersVisited(), payloadWeight - dest.getWeight());
         }
 
         // Handles the rest of the customers
@@ -61,16 +59,17 @@ public class EMVRP {
                             State nextState = new State(nextBitSet, nextCustomer);
                             State prevState = new State((BitSet) currBitSet.clone(), prevCustomer);
                             int storedCalc = Integer.MAX_VALUE;
+
                             if (dp.containsKey(prevState)) {
                                 int weight = weightVector.get(currBitSet);
                                 storedCalc = dp.get(prevState) + energyRequired(weight, edge.getDist());
                             }
-                            nextState.addCustomerVisited(prevCustomer);
-                            nextState.setCurrentNode(prevCustomer);
+
                             int currCalc = Integer.MAX_VALUE;
                             if (dp.containsKey(nextState)) {
                                 currCalc = dp.get(nextState);
                             }
+
                             this.dp.put(nextState, Math.min(storedCalc, currCalc));
                             this.weightVector.put(nextBitSet, weightVector.get(currBitSet) - nextCustomer.getWeight());
                         }
@@ -78,6 +77,16 @@ public class EMVRP {
                 }
             }
         }
+
+        // Return from last node to depot
+        int minCost = Integer.MAX_VALUE;
+        for (Node customer: allCustomers) {
+            long temp = (long) (Math.pow(2, allCustomers.size()) - 1);
+            State currState = new State(convert(temp), customer);
+            minCost = Math.min(dp.get(currState) + energyRequired(0, customer.getDistFromDepot()),
+                    minCost);
+        }
+        return minCost;
     }
 
     private int energyRequired(int weight, int distance) {

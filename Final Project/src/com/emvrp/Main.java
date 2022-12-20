@@ -9,18 +9,18 @@ public class Main {
 
     public static void main(String[] args) {
         Node depot = new Node(0, 0, 0);
-        Node first = new Node(1, 560, 362);
-        Node second = new Node(2, 504, 469);
-        Node third = new Node(3, 936, 283);
+        Node first = new Node(1, 560, 362); //A
+        Node second = new Node(2, 504, 469); //B
+        Node third = new Node(3, 936, 283); //C
         Edge depotToFirst = new Edge(first.getDistFromDepot(), depot, first);
         Edge depotToSecond = new Edge(second.getDistFromDepot(), depot, second);
         Edge depotToThird = new Edge(third.getDistFromDepot(), depot, third);
-        Edge firstToSecond = new Edge(468, first, second);
-        Edge secondToFirst = new Edge(468, second, first);
-        Edge firstToThird = new Edge(665, first, third);
-        Edge thirdToFirst = new Edge(665, third, first);
-        Edge secondToThird = new Edge(795, second, third);
-        Edge thirdToSecond = new Edge(795, third, second);
+        Edge firstToSecond = new Edge(795, first, second);
+        Edge secondToFirst = new Edge(795, second, first);
+        Edge firstToThird = new Edge(468, first, third);
+        Edge thirdToFirst = new Edge(468, third, first);
+        Edge secondToThird = new Edge(665, second, third);
+        Edge thirdToSecond = new Edge(665, third, second);
         Edge firstToDepot = new Edge(first.getDistFromDepot(), first, depot);
         Edge secondToDepot = new Edge(second.getDistFromDepot(), second, depot);
         Edge thirdToDepot = new Edge(third.getDistFromDepot(), third, depot);
@@ -46,6 +46,7 @@ public class Main {
         allCustomers.add(second);
         allCustomers.add(third);
         EMVRP emvrp = new EMVRP(depot, 2000, 3000, allCustomers);
-        emvrp.getBestRoute();
+        int result = emvrp.getBestRoute();
+        System.out.println(result);
     }
 }
