@@ -8,6 +8,9 @@ import java.util.Set;
 public class Main {
 
     public static void main(String[] args) {
+        // Use max value for battery capacity for classic EMVRP
+        // To modify for limited battery when ready
+        Drone drone = new Drone(3000, 7509632);
         Node depot = new Node(0, 0, 0);
         Node first = new Node(1, 560, 362); //A
         Node second = new Node(2, 504, 469); //B
@@ -47,6 +50,8 @@ public class Main {
         allCustomers.add(third);
         EMVRP emvrp = new EMVRP(depot, 2000, 3000, allCustomers);
         int result = emvrp.getBestRoute();
+//        LimitedBattery limitedBattery = new LimitedBattery(depot, 2000, allCustomers, drone);
+//        int result = limitedBattery.getBestRoute();
         System.out.println(result);
     }
 }

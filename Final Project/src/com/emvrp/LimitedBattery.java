@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Classic EMVRP without enhancements.
+ * Enhanced EMVRP with limited battery capacity
  *
  * @author Terng Yan Long
  */
-public class EMVRP {
+public class LimitedBattery {
     private List<Integer> route; // Stores the resulting route
     private Node startingNode; // By default, it should be the depot
     private int payloadWeight; // Total weight of payload
@@ -18,16 +18,20 @@ public class EMVRP {
     private HashMap<State, Integer> dp;
     private State state;
     private HashMap<BitSet, Integer> weightVector;
+    private HashMap<State, Integer> droneState;
+    private Drone drone;
 
-    public EMVRP(Node startingNode, int payloadWeight, int droneWeight, List<Node> allCustomers) {
+    public LimitedBattery(Node startingNode, int payloadWeight, List<Node> allCustomers, Drone drone) {
         this.startingNode = startingNode;
         this.payloadWeight = payloadWeight;
-        this.droneWeight = droneWeight;
+        this.droneWeight = drone.getWeight();
         this.allCustomers = allCustomers;
         this.dp = new HashMap<>();
         int bitsRequired = Integer.SIZE - Integer.numberOfLeadingZeros(allCustomers.size());
         this.state = new State(new BitSet(bitsRequired), startingNode); // i.e. E({0}, 0)
         this.weightVector = new HashMap<>();
+        this.droneState = new HashMap<>();
+        this.drone = drone;
     }
 
     public int getBestRoute() {
@@ -37,8 +41,9 @@ public class EMVRP {
             State tempState = new State((BitSet) state.getCustomersVisited().clone(), state.getCurrentNode());
             tempState.addCustomerVisited(dest);
             tempState.setCurrentNode(dest);
-            this.dp.put(tempState, energyRequired(payloadWeight, dest.getDistFromDepot()));
-            this.weightVector.put(tempState.getCustomersVisited(), payloadWeight - dest.getWeight());
+            int currEnergyRequired = energyRequired(payloadWeight, dest.getDistFromDepot());
+            this.dp.put(tempState, currEnergyRequired);
+            this.weightVector.put(tempState.getCustomersVisited(), payloadWeight - dest.getWeight());;
         }
 
         // Handles the rest of the customers
@@ -70,7 +75,8 @@ public class EMVRP {
                                 currCalc = dp.get(nextState);
                             }
 
-                            this.dp.put(nextState, Math.min(storedCalc, currCalc));
+                            int currEnergyRequired = Math.min(storedCalc, currCalc);
+                            this.dp.put(nextState, currEnergyRequired);
                             this.weightVector.put(nextBitSet, weightVector.get(currBitSet) - nextCustomer.getWeight());
                         }
                     }
