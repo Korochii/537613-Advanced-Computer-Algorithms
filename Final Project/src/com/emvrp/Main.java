@@ -17,13 +17,29 @@ public class Main {
         Edge depotToThird = new Edge(third.getDistFromDepot(), depot, third);
         Edge firstToSecond = new Edge(468, first, second);
         Edge secondToFirst = new Edge(468, second, first);
+        Edge firstToThird = new Edge(665, first, third);
+        Edge thirdToFirst = new Edge(665, third, first);
+        Edge secondToThird = new Edge(795, second, third);
+        Edge thirdToSecond = new Edge(795, third, second);
+        Edge firstToDepot = new Edge(first.getDistFromDepot(), first, depot);
+        Edge secondToDepot = new Edge(second.getDistFromDepot(), second, depot);
+        Edge thirdToDepot = new Edge(third.getDistFromDepot(), third, depot);
 
         depot.addNeighbours(depotToFirst);
         depot.addNeighbours(depotToSecond);
         depot.addNeighbours(depotToThird);
 
+        first.addNeighbours(firstToDepot);
         first.addNeighbours(firstToSecond);
+        first.addNeighbours(firstToThird);
+
+        second.addNeighbours(secondToDepot);
         second.addNeighbours(secondToFirst);
+        second.addNeighbours(secondToThird);
+
+        third.addNeighbours(thirdToDepot);
+        third.addNeighbours(thirdToFirst);
+        third.addNeighbours(thirdToSecond);
 
         List<Node> allCustomers = new ArrayList<>();
         allCustomers.add(first);

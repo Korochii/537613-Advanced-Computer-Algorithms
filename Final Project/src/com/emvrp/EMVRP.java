@@ -44,38 +44,39 @@ public class EMVRP {
         }
 
         // Handles the rest of the customers
-        for (int i = 1; i < allCustomers.size(); i++) {
+        for (int i = 1; i < Math.pow(2, allCustomers.size()); i++) {
             BitSet currBitSet = convert(i); // E.g. 0001 => visited 1st
             // Select next_customer that has not been visited yet (i.e. bit = 0)
-            for (int j = 0; j < i; j++) {
+            for (int j = 0; j < allCustomers.size(); j++) {
                 if (!currBitSet.get(j)) {
                     // Index of current non-visited node = j
                     // Try to find the source node that has j as dest node
                     Node nextCustomer = allCustomers.get(j);
                     for (Edge edge : nextCustomer.getNeighbours()) {
                         Node prevCustomer = edge.getDest();
-                        BitSet nextBitSet = (BitSet) currBitSet.clone();
-                        nextBitSet.set(j);
-                        // Update dp 2D array if necessary
-                        State nextState = new State(nextBitSet, nextCustomer);
-                        State prevState = new State((BitSet) currBitSet.clone(), prevCustomer);
-                        int storedCalc = Integer.MAX_VALUE;
-                        if (dp.containsKey(prevState)) {
-                            int weight = weightVector.get(currBitSet);
-                            storedCalc = dp.get(prevState) + energyRequired(weight, edge.getDist());
+                        if (prevCustomer.getIndex() != 0) {
+                            BitSet nextBitSet = (BitSet) currBitSet.clone();
+                            nextBitSet.set(j);
+                            // Update dp 2D array if necessary
+                            State nextState = new State(nextBitSet, nextCustomer);
+                            State prevState = new State((BitSet) currBitSet.clone(), prevCustomer);
+                            int storedCalc = Integer.MAX_VALUE;
+                            if (dp.containsKey(prevState)) {
+                                int weight = weightVector.get(currBitSet);
+                                storedCalc = dp.get(prevState) + energyRequired(weight, edge.getDist());
+                            }
+                            nextState.addCustomerVisited(prevCustomer);
+                            nextState.setCurrentNode(prevCustomer);
+                            int currCalc = Integer.MAX_VALUE;
+                            if (dp.containsKey(nextState)) {
+                                currCalc = dp.get(nextState);
+                            }
+                            this.dp.put(nextState, Math.min(storedCalc, currCalc));
+                            this.weightVector.put(nextBitSet, weightVector.get(currBitSet) - nextCustomer.getWeight());
                         }
-                        nextState.addCustomerVisited(prevCustomer);
-                        nextState.setCurrentNode(prevCustomer);
-                        int currCalc = Integer.MAX_VALUE;
-                        if (dp.containsKey(nextState)) {
-                            currCalc = dp.get(nextState);
-                        }
-                        this.dp.put(nextState, Math.min(storedCalc, currCalc));
-                        this.weightVector.put(nextBitSet, weightVector.get(currBitSet) - nextCustomer.getWeight());
                     }
                 }
             }
-
         }
     }
 
