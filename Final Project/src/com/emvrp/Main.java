@@ -1,15 +1,12 @@
 package com.emvrp;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Main {
 
     public static void main(String[] args) {
-        // Use max value for battery capacity for classic EMVRP
-        // To modify for limited battery when ready
+        // To modify batteryCapacity in order to test for the case of LimitedBattery
         Drone drone = new Drone(3000, 7509632);
         Node depot = new Node(0, 0, 0);
         Node first = new Node(1, 560, 362); //A

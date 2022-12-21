@@ -18,8 +18,7 @@ public class LimitedBattery {
     private HashMap<State, Integer> dp;
     private State state;
     private HashMap<BitSet, Integer> weightVector;
-    private HashMap<State, Integer> droneState; // Do we need this?
-    private HashMap<State, State> route;
+    private HashMap<State, List<State>> route;
     private Drone drone;
 
     public LimitedBattery(Node startingNode, int payloadWeight, List<Node> allCustomers, Drone drone) {
@@ -31,7 +30,6 @@ public class LimitedBattery {
         int bitsRequired = Integer.SIZE - Integer.numberOfLeadingZeros(allCustomers.size());
         this.state = new State(new BitSet(bitsRequired), startingNode); // i.e. E({0}, 0)
         this.weightVector = new HashMap<>();
-        this.droneState = new HashMap<>();
         this.route = new HashMap<>();
         this.drone = drone;
     }
@@ -45,8 +43,10 @@ public class LimitedBattery {
             tempState.setCurrentNode(dest);
             int currEnergyRequired = energyRequired(payloadWeight, dest.getDistFromDepot());
             this.dp.put(tempState, currEnergyRequired);
-//            this.route.put(tempState, );
-            this.weightVector.put(tempState.getCustomersVisited(), payloadWeight - dest.getWeight());;
+            this.weightVector.put(tempState.getCustomersVisited(), payloadWeight - dest.getWeight());
+            List<State> list = new ArrayList<>();
+            list.add(tempState);
+            route.put(tempState, list);
         }
 
         // Handles the rest of the customers
@@ -80,13 +80,22 @@ public class LimitedBattery {
 
                             int currEnergyRequired = Math.min(storedCalc, currCalc);
                             this.dp.put(nextState, currEnergyRequired);
-                            this.route.put(nextState, prevState);
                             this.weightVector.put(nextBitSet, weightVector.get(currBitSet) - nextCustomer.getWeight());
+
+                            List<State> list;
+                            if (route.containsKey(nextState)) {
+                                list = route.get(nextState);
+                            } else {
+                                list = new ArrayList<>();
+                            }
+                            list.add(prevState);
+                            route.put(nextState, list);
                         }
                     }
                 }
             }
         }
+
         // Return from last node to depot
         int minCost = Integer.MAX_VALUE;
         State finalState = null;
@@ -99,13 +108,7 @@ public class LimitedBattery {
                 finalState = currState;
             }
         }
-
-//        System.out.println(finalState);
-//        State temp = route.get(finalState);
-//        System.out.println(temp);
-//        System.out.println(route.get(temp));
-        calculateAdditionalEnergy(finalState);
-        return minCost;
+        return minCost + calculateAdditionalEnergy(finalState);
     }
 
     private int calculateAdditionalEnergy(State finalState) {
@@ -119,7 +122,14 @@ public class LimitedBattery {
         Node[] pathTaken = new Node[numOfNodes];
         for (int i = numOfNodes - 1; i >= 0; i--) {
             pathTaken[i] = finalState.getCurrentNode();
-            finalState = route.get(finalState);
+            List<State> states = route.get(finalState);
+            int count = Integer.MAX_VALUE;
+            for (State state : states) {
+                if (dp.get(state) < count) {
+                    count = dp.get(state);
+                    finalState = state;
+                }
+            }
         }
 
         // Calculate remaining battery level/payload weight after visiting the first node
