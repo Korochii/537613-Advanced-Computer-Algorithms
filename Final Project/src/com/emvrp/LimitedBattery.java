@@ -10,7 +10,6 @@ import java.util.List;
  * @author Terng Yan Long
  */
 public class LimitedBattery {
-    private List<Integer> route; // Stores the resulting route
     private Node startingNode; // By default, it should be the depot
     private int payloadWeight; // Total weight of payload
     private int droneWeight;
@@ -18,7 +17,8 @@ public class LimitedBattery {
     private HashMap<State, Integer> dp;
     private State state;
     private HashMap<BitSet, Integer> weightVector;
-    private HashMap<State, Integer> droneState;
+    private HashMap<State, Integer> droneState; // Do we need this?
+    private HashMap<State, State> route;
     private Drone drone;
 
     public LimitedBattery(Node startingNode, int payloadWeight, List<Node> allCustomers, Drone drone) {
@@ -31,6 +31,7 @@ public class LimitedBattery {
         this.state = new State(new BitSet(bitsRequired), startingNode); // i.e. E({0}, 0)
         this.weightVector = new HashMap<>();
         this.droneState = new HashMap<>();
+        this.route = new HashMap<>();
         this.drone = drone;
     }
 
@@ -43,6 +44,7 @@ public class LimitedBattery {
             tempState.setCurrentNode(dest);
             int currEnergyRequired = energyRequired(payloadWeight, dest.getDistFromDepot());
             this.dp.put(tempState, currEnergyRequired);
+//            this.route.put(tempState, );
             this.weightVector.put(tempState.getCustomersVisited(), payloadWeight - dest.getWeight());;
         }
 
@@ -77,6 +79,7 @@ public class LimitedBattery {
 
                             int currEnergyRequired = Math.min(storedCalc, currCalc);
                             this.dp.put(nextState, currEnergyRequired);
+                            this.route.put(nextState, prevState);
                             this.weightVector.put(nextBitSet, weightVector.get(currBitSet) - nextCustomer.getWeight());
                         }
                     }
@@ -86,12 +89,20 @@ public class LimitedBattery {
 
         // Return from last node to depot
         int minCost = Integer.MAX_VALUE;
+        State finalState = null;
         for (Node customer: allCustomers) {
             long temp = (long) (Math.pow(2, allCustomers.size()) - 1);
             State currState = new State(convert(temp), customer);
-            minCost = Math.min(dp.get(currState) + energyRequired(0, customer.getDistFromDepot()),
-                    minCost);
+            int costForCurrState = dp.get(currState) + energyRequired(0, customer.getDistFromDepot());
+            if (costForCurrState < minCost) {
+                minCost = costForCurrState;
+                finalState = currState;
+            }
         }
+        System.out.println(finalState);
+        State temp = route.get(finalState);
+        System.out.println(temp);
+        System.out.println(route.get(temp));
         return minCost;
     }
 

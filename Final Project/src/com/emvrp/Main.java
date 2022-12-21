@@ -48,10 +48,10 @@ public class Main {
         allCustomers.add(first);
         allCustomers.add(second);
         allCustomers.add(third);
-        EMVRP emvrp = new EMVRP(depot, 2000, 3000, allCustomers);
-        int result = emvrp.getBestRoute();
-//        LimitedBattery limitedBattery = new LimitedBattery(depot, 2000, allCustomers, drone);
-//        int result = limitedBattery.getBestRoute();
+//        EMVRP emvrp = new EMVRP(depot, 2000, 3000, allCustomers);
+//        int result = emvrp.getBestRoute();
+        LimitedBattery limitedBattery = new LimitedBattery(depot, 2000, allCustomers, drone);
+        int result = limitedBattery.getBestRoute();
         System.out.println(result);
     }
 }
