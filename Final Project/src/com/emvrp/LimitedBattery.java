@@ -1,5 +1,6 @@
 package com.emvrp;
 
+import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
@@ -86,7 +87,6 @@ public class LimitedBattery {
                 }
             }
         }
-
         // Return from last node to depot
         int minCost = Integer.MAX_VALUE;
         State finalState = null;
@@ -99,13 +99,59 @@ public class LimitedBattery {
                 finalState = currState;
             }
         }
-        System.out.println(finalState);
-        State temp = route.get(finalState);
-        System.out.println(temp);
-        System.out.println(route.get(temp));
+
+//        System.out.println(finalState);
+//        State temp = route.get(finalState);
+//        System.out.println(temp);
+//        System.out.println(route.get(temp));
+        calculateAdditionalEnergy(finalState);
         return minCost;
     }
 
+    private int calculateAdditionalEnergy(State finalState) {
+        int numOfNodes = allCustomers.size();
+        int maxBatteryCapacity = this.drone.getBatteryCapacity();
+        int currentBatteryLevel = maxBatteryCapacity; // Drone start with 100% battery
+        int extraEnergyRequired = 0; // Result of this function
+        int currentPayloadWeight = this.payloadWeight;
+
+        // Trace path taken for optimal route, and add it into an array for further processing
+        Node[] pathTaken = new Node[numOfNodes];
+        for (int i = numOfNodes - 1; i >= 0; i--) {
+            pathTaken[i] = finalState.getCurrentNode();
+            finalState = route.get(finalState);
+        }
+
+        // Calculate remaining battery level/payload weight after visiting the first node
+        currentBatteryLevel -= energyRequired(currentPayloadWeight, pathTaken[0].getDistFromDepot());
+        currentPayloadWeight -= pathTaken[0].getWeight();
+
+        // Check for each node outside of depot, excluding the last node
+        for (int j = 0; j < numOfNodes - 1; j++) {
+            Node currNode = pathTaken[j];
+            Node nextNode = pathTaken[j+1];
+            int energyFromCurrToNext = 0;
+            for (Edge edge : currNode.getNeighbours()) {
+                if (edge.getDest().equals(nextNode)) {
+                    energyFromCurrToNext = energyRequired(currentPayloadWeight, edge.getDist());
+                }
+            }
+
+            // Unload at next node
+            currentPayloadWeight -= nextNode.getWeight();
+            int energyFromNextToDepot = energyRequired(currentPayloadWeight, nextNode.getDistFromDepot());
+            int totalEnergyRequired = energyFromCurrToNext + energyFromNextToDepot;
+
+            if (totalEnergyRequired > currentBatteryLevel) {
+                int temp = energyRequired(currentPayloadWeight, currNode.getDistFromDepot());
+                extraEnergyRequired += (2 * temp);
+                currentBatteryLevel = maxBatteryCapacity - temp; // Recharge at depot
+            }
+            currentBatteryLevel -= energyFromCurrToNext;
+        }
+        return extraEnergyRequired;
+
+    }
     private int energyRequired(int weight, int distance) {
         return distance * (weight + this.droneWeight);
     }
