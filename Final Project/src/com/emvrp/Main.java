@@ -47,8 +47,11 @@ public class Main {
         allCustomers.add(third);
 //        EMVRP emvrp = new EMVRP(depot, 2000, 3000, allCustomers);
 //        int result = emvrp.getBestRoute();
-        LimitedBattery limitedBattery = new LimitedBattery(depot, 2000, allCustomers, drone);
-        int result = limitedBattery.getBestRoute();
+//        LimitedBattery limitedBattery = new LimitedBattery(depot, 2000, allCustomers, drone);
+//        int result = limitedBattery.getBestRoute();
+
+        BruteForce bf = new BruteForce(depot, 2000, allCustomers, drone);
+        int result = bf.getBestRoute();
         System.out.println(result);
     }
 }
