@@ -73,16 +73,20 @@ public class BruteForce {
             if (isNeighbour) {
                 // Check if there is a need to return to depot to recharge
                 int currCost = energyRequired(currentPayload, connection.getDist());
-                currentPayload -= nextCustomer.getWeight();
-                int costToDepot = energyRequired(currentPayload, nextCustomer.getDistFromDepot());
+                int costToDepot = energyRequired(currentPayload - nextCustomer.getWeight(),
+                        nextCustomer.getDistFromDepot());
                 int totalEnergyRequired = currCost + costToDepot;
                 if (totalEnergyRequired > currentBatteryLevel) {
-                    int temp = energyRequired(currentPayload, currCustomer.getDistFromDepot());
-                    cost += (2 * temp);
-                    currentBatteryLevel = maxBatteryCapacity - temp; // Recharge at depot
+                    cost += energyRequired(currentPayload, currCustomer.getDistFromDepot());
+                    cost += energyRequired(currentPayload, nextCustomer.getDistFromDepot());
+                    currentBatteryLevel = maxBatteryCapacity
+                            - energyRequired(currentPayload, nextCustomer.getDistFromDepot()); // Recharge at depot
+                } else {
+                    currentBatteryLevel -= currCost;
+                    cost += currCost;
                 }
-                currentBatteryLevel -= currCost;
-                cost += currCost;
+                currentPayload -= nextCustomer.getWeight();
+
             } else {
                 isValidPermutation = false;
             }

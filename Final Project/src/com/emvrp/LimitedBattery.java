@@ -147,17 +147,20 @@ public class LimitedBattery {
                 }
             }
 
-            // Unload at next node
-            currentPayloadWeight -= nextNode.getWeight();
-            int energyFromNextToDepot = energyRequired(currentPayloadWeight, nextNode.getDistFromDepot());
+            int energyFromNextToDepot = energyRequired(currentPayloadWeight-nextNode.getWeight(),
+                    nextNode.getDistFromDepot());
             int totalEnergyRequired = energyFromCurrToNext + energyFromNextToDepot;
 
             if (totalEnergyRequired > currentBatteryLevel) {
-                int temp = energyRequired(currentPayloadWeight, currNode.getDistFromDepot());
-                extraEnergyRequired += (2 * temp);
-                currentBatteryLevel = maxBatteryCapacity - temp; // Recharge at depot
+                extraEnergyRequired += energyRequired(currentPayloadWeight, currNode.getDistFromDepot());
+                extraEnergyRequired += energyRequired(currentPayloadWeight, nextNode.getDistFromDepot());
+                currentBatteryLevel = maxBatteryCapacity
+                        - energyRequired(currentPayloadWeight, nextNode.getDistFromDepot()); // Recharge at depot
+            } else {
+                currentBatteryLevel -= energyFromCurrToNext;
             }
-            currentBatteryLevel -= energyFromCurrToNext;
+            // Unload at next node
+            currentPayloadWeight -= nextNode.getWeight();
         }
         return extraEnergyRequired;
 
